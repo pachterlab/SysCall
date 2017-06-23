@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="949.54">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    span.s1 {text-decoration: underline}
+    span.Apple-tab-span {white-space:pre}
+  </style>
+</head>
+<body>
+<p class="p1"><br></p>
+<p class="p1"><br></p>
+<p class="p1"><br></p>
+<p class="p1"><br></p>
+<p class="p1"><br></p>
+<p class="p2">To classify a list of locations as heterozygous sites or systematic errors prepare the input:<span class="Apple-converted-space"> </span></p>
+<p class="p2">==========================================================================</p>
+<p class="p1"><br></p>
+<p class="p2">(*** see example run at the bottom ***)</p>
+<p class="p1"><br></p>
+<p class="p2"><b>command: <span class="Apple-converted-space">  </span>perl SysCall.pl <span class="Apple-converted-space">  </span></b>list_locations_to_classify<span class="Apple-converted-space">    </span>reads_file.sam<span class="Apple-converted-space">    </span>coverage_file<span class="Apple-converted-space">    </span>outfile <span class="Apple-converted-space">  </span>code_dir</p>
+<p class="p1"><br></p>
+<p class="p1"><br></p>
+<p class="p1"><br></p>
+<p class="p2"><span class="s1"><b>Input</b></span><b>:</b><span class="Apple-converted-space">    </span>(1)<span class="Apple-converted-space">  </span>list_locations_to_classify <span class="Apple-converted-space">  </span>(2)<span class="Apple-converted-space">  </span>reads_file.sam <span class="Apple-converted-space">    </span>(3) <span class="Apple-converted-space">  </span>coverage_file <span class="Apple-converted-space">  </span>(4) outfile<span class="Apple-converted-space">    </span>(5) code_dir</p>
+<p class="p1"><br></p>
+<p class="p2">(1) <span class="Apple-converted-space">  </span>list_locations_to_classify <span class="Apple-converted-space"> </span></p>
+<p class="p2">This file is space delimited and holds in each row a position to classify.<span class="Apple-converted-space">  </span>It also holds the nucleotides present around the location specified, 2 bases in each direction.<span class="Apple-converted-space"> </span></p>
+<p class="p2">Some example lines are:</p>
+<p class="p1"><br></p>
+<p class="p2">chr1 1840748 G G T A A</p>
+<p class="p2">chr1 17113024 G G A G C</p>
+<p class="p2">chr1 2467381 G G T C A</p>
+<p class="p2">chr1 17535338 T A C T T</p>
+<p class="p1"><br></p>
+<p class="p1"><br></p>
+<p class="p2">(2) reads_file.sam</p>
+<p class="p2">This file contains the sequenced reads of the experiment in sam format. Notice that the algorithm makes use of the location, sequence and quality scores at the reads.<span class="Apple-converted-space"> </span></p>
+<p class="p1"><br></p>
+<p class="p2">Some example lines are:</p>
+<p class="p2">HWI-B5-690_0001:5:12:11067:13689#0<span class="Apple-tab-span">	</span>147<span class="Apple-tab-span">	</span>chr1<span class="Apple-tab-span">	</span>930038<span class="Apple-tab-span">	</span>255<span class="Apple-tab-span">	</span>76M<span class="Apple-tab-span">	</span>=<span class="Apple-tab-span">	</span>929924<span class="Apple-tab-span">	</span>-190<span class="Apple-tab-span">	</span>ACCAGACCTCACTGTGTTGAAGTCATCGGCACCCCTTTCCTGCAGGAGGGGACACCTGCTCCCTGTCACTCTCCCG<span class="Apple-tab-span">	</span>AABDBABDBDADDDDBBDDCDCDCDBCCCC&gt;C?BBBBBCC@CC@@CCCCCCDCDCCCCCCCCCCCCCDCCCCCCCC<span class="Apple-tab-span">	</span>XA:i:0<span class="Apple-tab-span">	</span>MD:Z:76<span class="Apple-tab-span">	</span>NM:i:0</p>
+<p class="p2">HWI-B5-690_0001:5:14:16513:20412#0<span class="Apple-tab-span">	</span>83<span class="Apple-tab-span">	</span>chr1<span class="Apple-tab-span">	</span>930038<span class="Apple-tab-span">	</span>255<span class="Apple-tab-span">	</span>76M<span class="Apple-tab-span">	</span>=<span class="Apple-tab-span">	</span>929924<span class="Apple-tab-span">	</span>-190<span class="Apple-tab-span">	</span>ACCAGCCCTCACTGTGTTGAAGTCATCGGCACCCCTTTCCTGCAGGAGGGGACACCTGCTCCCTGTCACTCTCCCG<span class="Apple-tab-span">	</span>####################################C-BB9CC9&gt;C?B@&gt;?@CBCCCBC?CCCCCCCCCCCCCCCC<span class="Apple-tab-span">	</span>XA:i:1<span class="Apple-tab-span">	</span>MD:Z:5A70<span class="Apple-tab-span">	</span>NM:i:1</p>
+<p class="p2">HWI-B5-690_0001:5:15:6549:10832#0<span class="Apple-tab-span">	</span>83<span class="Apple-tab-span">	</span>chr1<span class="Apple-tab-span">	</span>930038<span class="Apple-tab-span">	</span>255<span class="Apple-tab-span">	</span>76M<span class="Apple-tab-span">	</span>=<span class="Apple-tab-span">	</span>929924<span class="Apple-tab-span">	</span>-190<span class="Apple-tab-span">	</span>ACCAGACCTCACTGTCTAGAAGTCATCGGCACCCCTTTCCTGCAGGAGGGGACACCTGCTCCCTGTCACTCTCCCG<span class="Apple-tab-span">	</span>A??B9&lt;=&gt;5&gt;8.'*'++(8@=@2D@?&gt;&gt;;;543'&amp;:ABB9BCC@@CCCCCCCCDCCCCCCCCCCCCCCCCCCCCCC<span class="Apple-tab-span">	</span>XA:i:2<span class="Apple-tab-span">	</span>MD:Z:15G1T58<span class="Apple-tab-span">	</span>NM:i:2</p>
+<p class="p1"><br></p>
+<p class="p2">(3) <span class="Apple-converted-space">  </span>coverage_file<span class="Apple-converted-space"> </span></p>
+<p class="p2">This is a file holding the per-site coverage which is most similar to that of your data. It should be taken from the directory "coverage_files" and is used for the training step of the algorithm.<span class="Apple-converted-space"> </span></p>
+<p class="p1"><br></p>
+<p class="p1"><br></p>
+<p class="p2">(4) outfile<span class="Apple-converted-space"> </span></p>
+<p class="p2">The name of your outfile, to which different extentions will be attached for the temporary files and for the final two outfiles listing systematic errors and heterozygous sites.<span class="Apple-converted-space"> </span></p>
+<p class="p1"><br></p>
+<p class="p2">(5) code_dir</p>
+<p class="p2">The directory in which the code is - the path you need to use to call <b>SysCall.pl .</b></p>
+<p class="p1"><br></p>
+<p class="p1"><br></p>
+<p class="p1"><br></p>
+<p class="p2"><span class="s1"><b>output</b></span><b>:</b><span class="Apple-converted-space">      </span>(1)<span class="Apple-converted-space">    </span>list_heterozygous <span class="Apple-converted-space">    </span>(2)<span class="Apple-converted-space">  </span>list_sys_errors</p>
+<p class="p1"><br></p>
+<p class="p2">(1) outfile.sys_errors <span class="Apple-converted-space">   </span></p>
+<p class="p2">Will hold the lines from input file "list_locations_to_classify" that have been classified as systematic errors.<span class="Apple-converted-space"> </span></p>
+<p class="p1"><br></p>
+<p class="p2">(2) outfile.heterozygous</p>
+<p class="p2">Will hold the lines from input file "list_locations_to_classify" that have been classified as heterozygous sites.<span class="Apple-converted-space"> </span></p>
+<p class="p1"><br></p>
+<p class="p1"><br></p>
+<p class="p2"><span class="s1"><b>temporary<span class="Apple-converted-space">  </span>files</b></span><b>:</b></p>
+<p class="p1"><br></p>
+<p class="p2">(1) outfile.reads_parsed</p>
+<p class="p2"><span class="Apple-tab-span">	</span>holds the for every read that overlaps a position in the file list_locations_to_classify its parsed features.<span class="Apple-converted-space"> </span></p>
+<p class="p1"><br></p>
+<p class="p2">(2) outfile.table_all</p>
+<p class="p2"><span class="Apple-tab-span">	</span>holds for each location in file list_locations_to_classify the different features for both directions</p>
+<p class="p1"><br></p>
+<p class="p2">(3) outfile.table_chosen</p>
+<p class="p2"><span class="Apple-tab-span">	</span>holds for each location the features chosen</p>
+<p class="p1"><br></p>
+<p class="p2">(4) outfile.tmp1</p>
+<p class="p2"><span class="Apple-tab-span">	</span>holds the temporary files for the output.</p>
+<p class="p1"><br></p>
+<p class="p2">(5) outfile.tmp2</p>
+<p class="p2"><span class="Apple-tab-span">	</span>holds the temporary files for the output.<span class="Apple-converted-space"> </span></p>
+<p class="p1"><br></p>
+<p class="p2"><span class="s1"><b>Example run</b></span>:</p>
+<p class="p1"><br></p>
+<p class="p2">from directory Example/<span class="Apple-converted-space">  </span>run:</p>
+<p class="p1"><br></p>
+<p class="p2">perl ../SysCall.pl<b> <span class="Apple-converted-space">  </span></b>list_locations<span class="Apple-converted-space">  </span>fastq_reads_chr19.sam<span class="Apple-converted-space">  </span>../Coverage_Files <span class="Apple-converted-space">  </span>list_locations_out<span class="Apple-converted-space">  </span>../</p>
+<p class="p1"><br></p>
+<p class="p2">output:</p>
+<p class="p2">-- the list of locations classified as systematic errors will be in file: <span class="Apple-converted-space">  </span>list_locations_out.sys_errors</p>
+<p class="p2">-- the list of locations classified as heterozygous will be in file: <span class="Apple-converted-space">  </span>list_locations_out.heterozygous</p>
+<p class="p1"><br></p>
+<p class="p1"><br></p>
+</body>
+</html>
