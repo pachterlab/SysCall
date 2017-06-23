@@ -1,5 +1,0 @@
-
-
-perl ../SysCall.pl list_locations sample_reads.sam out_syscall ../
-
-
